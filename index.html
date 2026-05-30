@@ -6,65 +6,69 @@
 <title>SC MABS — T&S Calculator</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: Arial, sans-serif; font-size: 14px; color: #222; background: #f4f5f9; padding: 24px; }
+body { font-family: Arial, sans-serif; font-size: 14px; color: #222; background: #f4f5f9; padding: 24px; max-width: 960px; margin: 0 auto; }
 h1 { color: #303898; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
 .lime-bar { height: 4px; background: #D0E038; border-radius: 2px; margin: 8px 0 20px; width: 60px; }
 .card { background: #fff; border: 1px solid #dde; border-radius: 10px; padding: 20px; margin-bottom: 16px; }
-.step-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-.step-badge { background: #303898; color: #fff; font-size: 12px; font-weight: 700; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 18px; }
+.step-badge { background: #303898; color: #fff; font-size: 12px; font-weight: 700; border-radius: 50%; min-width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
 .step-title { font-size: 13px; font-weight: 700; color: #303898; text-transform: uppercase; letter-spacing: 0.05em; }
-.step-sub { font-size: 11px; color: #888; margin-top: 1px; }
-.section-title { font-size: 11px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 14px; }
-.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-.row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-.row4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-.field { display: flex; flex-direction: column; gap: 4px; }
+.step-sub { font-size: 12px; color: #888; margin-top: 2px; }
+.field { display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
 .field label { font-size: 12px; color: #555; font-weight: 600; }
-.field input, .field select { padding: 8px 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; font-family: Arial; color: #222; background: #fff; }
+.field input, .field select { padding: 8px 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; font-family: Arial; color: #222; background: #fff; width: 100%; }
 .field input:focus, .field select:focus { outline: 2px solid #303898; border-color: #303898; }
 .field input.populated { background: #f0f4ff; border-color: #303898; color: #303898; }
-.eircode-row { display: flex; gap: 10px; align-items: flex-end; }
-.eircode-row input { flex: 1; padding: 8px 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; font-family: Arial; text-transform: uppercase; letter-spacing: 0.08em; }
-.eircode-row input:focus { outline: 2px solid #303898; border-color: #303898; }
-.lookup-btn { padding: 8px 18px; background: #303898; color: #fff; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.opt { font-weight: 400; color: #999; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.grid4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; }
+.eircode-wrap { display: flex; gap: 10px; align-items: center; }
+.eircode-wrap input { flex: 1; padding: 9px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; font-family: Arial; text-transform: uppercase; letter-spacing: 0.06em; }
+.eircode-wrap input:focus { outline: 2px solid #303898; border-color: #303898; }
+.lookup-btn { padding: 9px 18px; background: #303898; color: #fff; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
 .lookup-btn:hover { background: #252d7a; }
 .lookup-btn:disabled { background: #aaa; cursor: not-allowed; }
-.status { font-size: 12px; margin-top: 6px; min-height: 18px; }
+.status { font-size: 12px; margin-top: 8px; min-height: 18px; }
 .ok { color: #2a5c0e; }
 .err { color: #c0392b; }
 .loading { color: #888; font-style: italic; }
-.calc-btn { padding: 13px 24px; background: #303898; color: #fff; border: none; border-radius: 7px; font-size: 15px; font-weight: 700; cursor: pointer; width: 100%; margin-top: 4px; letter-spacing: 0.01em; }
+.office-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+.office-table th { font-size: 11px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; padding: 6px 10px; border-bottom: 1.5px solid #eee; text-align: left; }
+.office-table td { padding: 9px 10px; border-bottom: 1px solid #f2f2f2; vertical-align: middle; font-size: 13px; }
+.office-table tr:last-child td { border-bottom: none; }
+.office-table tbody tr:hover { background: #f9f9fd; }
+.oname { font-weight: 700; color: #303898; }
+.ocode { color: #888; font-size: 12px; }
+.office-table input[type=number] { width: 64px; padding: 5px 8px; border: 1px solid #ccc; border-radius: 5px; font-size: 13px; }
+.muted { color: #ccc; }
+.calc-btn { width: 100%; padding: 13px; background: #303898; color: #fff; border: none; border-radius: 7px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; }
 .calc-btn:hover { background: #252d7a; }
 .calc-btn:disabled { background: #aaa; cursor: not-allowed; }
-.office-header { display: grid; grid-template-columns: 2.2fr 1fr 0.7fr 1fr 1fr; gap: 8px; padding: 0 10px 6px; }
-.office-header span { font-size: 11px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
-.office-row { display: grid; grid-template-columns: 2.2fr 1fr 0.7fr 1fr 1fr; gap: 8px; align-items: center; padding: 9px 10px; background: #f7f8fc; border-radius: 7px; margin-bottom: 6px; }
-.office-name { font-size: 13px; font-weight: 700; color: #303898; }
-.office-row input[type=number] { padding: 6px 8px; border: 1px solid #ccc; border-radius: 5px; font-size: 13px; width: 58px; }
-.muted { color: #bbb; }
 .calc-err { color: #c0392b; font-size: 12px; margin-top: 8px; }
+.warn { background: #fff8e1; border-left: 4px solid #f0a500; border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 12px; color: #7a4500; margin-top: 14px; line-height: 1.6; }
+.rates-ref { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 6px; }
+.rates-ref th { font-size: 11px; color: #888; padding: 5px 10px; border-bottom: 1px solid #eee; font-weight: 600; text-align: left; }
+.rates-ref td { padding: 6px 10px; border-bottom: 1px solid #f4f4f4; color: #444; }
+.rates-ref tr:last-child td { border-bottom: none; }
+.note { font-size: 11px; color: #888; margin-top: 10px; line-height: 1.6; }
 .results-section { display: none; }
 .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
 .metric { background: #f7f8fc; border-radius: 8px; padding: 14px 16px; }
 .metric-label { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
 .metric-value { font-size: 22px; font-weight: 700; color: #222; }
 .metric-value.hi { color: #303898; }
-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-th { font-size: 11px; color: #888; text-align: left; padding: 7px 10px; border-bottom: 1.5px solid #eee; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
-td { padding: 9px 10px; border-bottom: 1px solid #eee; vertical-align: middle; }
-tr:last-child td { border-bottom: none; }
+.res-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.res-table th { font-size: 11px; color: #888; text-align: left; padding: 7px 10px; border-bottom: 1.5px solid #eee; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+.res-table td { padding: 9px 10px; border-bottom: 1px solid #eee; vertical-align: middle; }
+.res-table tr:last-child td { border-bottom: none; }
 .total-row td { background: #f7f8fc; font-weight: 700; }
-.badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; margin-left: 4px; }
-.b-high  { background: #fde8e8; color: #7a0000; }
-.b-mid   { background: #fef3e2; color: #7a4500; }
-.b-low   { background: #e8f5e2; color: #2a5c0e; }
-.b-none  { background: #eee; color: #888; }
-.note { font-size: 11px; color: #888; margin-top: 10px; line-height: 1.6; }
-.warn { background: #fff8e1; border-left: 4px solid #f0a500; border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 12px; color: #7a4500; margin-top: 12px; line-height: 1.6; }
-.rates-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 4px; }
-.rates-table th { font-size: 11px; color: #888; padding: 5px 8px; border-bottom: 1px solid #eee; font-weight: 600; text-align: left; }
-.rates-table td { padding: 6px 8px; border-bottom: 1px solid #f4f4f4; }
-.rates-table tr:last-child td { border-bottom: none; }
+.badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; }
+.b-high { background: #fde8e8; color: #7a0000; }
+.b-mid  { background: #fef3e2; color: #7a4500; }
+.b-low  { background: #e8f5e2; color: #2a5c0e; }
+.b-none { background: #eee;    color: #888; }
+.section-title { font-size: 11px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 14px; }
 </style>
 </head>
 <body>
@@ -72,7 +76,7 @@ tr:last-child td { border-bottom: none; }
 <h1>South Connacht MABS</h1>
 <div class="lime-bar"></div>
 
-<!-- STEP 1: VENUE -->
+<!-- STEP 1 -->
 <div class="card">
   <div class="step-header">
     <div class="step-badge">1</div>
@@ -81,38 +85,40 @@ tr:last-child td { border-bottom: none; }
       <div class="step-sub">Type the Eircode of the event venue — with or without a space</div>
     </div>
   </div>
-  <div class="field" style="margin-bottom:12px;">
+  <div class="field">
     <label>Venue Eircode</label>
-    <div class="eircode-row">
+    <div class="eircode-wrap">
       <input type="text" id="venue-eircode" placeholder="e.g. F42 DX61" maxlength="10"
         oninput="let v=this.value.replace(/\s+/g,'').toUpperCase();this.value=v.length>3?v.slice(0,3)+' '+v.slice(3):v;"
         onkeydown="if(event.key==='Enter')lookupEircode()" />
-      <button class="lookup-btn" id="lookup-btn" onclick="lookupEircode()">Look up address</button>
-    </div>
-    <div class="status" id="lookup-status"></div>
-  </div>
-  <div class="row2">
-    <div class="field">
-      <label>Venue name <span style="font-weight:400;color:#999;">(optional)</span></label>
-      <input type="text" id="venue-name" placeholder="e.g. Donegal Copper Craft" />
-    </div>
-    <div class="field">
-      <label>Address (auto-filled)</label>
-      <input type="text" id="venue-address" placeholder="Populated after Eircode lookup" />
     </div>
   </div>
 </div>
 
-<!-- STEP 2: EVENT TIMING -->
+<!-- STEP 2 -->
 <div class="card">
   <div class="step-header">
     <div class="step-badge">2</div>
     <div>
       <div class="step-title">Look up address</div>
-      <div class="step-sub">Click ‘Look up address’ to confirm the venue location before calculating</div>
+      <div class="step-sub">Click the button to confirm the venue location before calculating</div>
     </div>
   </div>
+  <button class="lookup-btn" id="lookup-btn" onclick="lookupEircode()" style="margin-bottom:12px;">Look up address</button>
+  <div class="status" id="lookup-status"></div>
+  <div class="grid2" style="margin-top:12px;">
+    <div class="field">
+      <label>Venue name <span class="opt">(optional)</span></label>
+      <input type="text" id="venue-name" placeholder="e.g. Donegal Copper Craft" />
+    </div>
+    <div class="field">
+      <label>Address (auto-filled)</label>
+      <input type="text" id="venue-address" placeholder="Populated after lookup" />
+    </div>
+  </div>
+</div>
 
+<!-- STEP 3 -->
 <div class="card">
   <div class="step-header">
     <div class="step-badge">3</div>
@@ -121,7 +127,7 @@ tr:last-child td { border-bottom: none; }
       <div class="step-sub">Set activity and lunch duration — adjust rates if needed</div>
     </div>
   </div>
-  <div class="row4">
+  <div class="grid4">
     <div class="field">
       <label>Activity duration (hrs)</label>
       <input type="number" id="activity-hrs" value="2" min="0" step="0.5" />
@@ -142,45 +148,44 @@ tr:last-child td { border-bottom: none; }
       <input type="number" id="rate-km" value="0.50" step="0.01" min="0" />
     </div>
   </div>
-  <div class="row3">
+  <div class="grid3">
     <div class="field">
-      <label>Subsistence 5–10 hrs (€/person)</label>
+      <label>Sub. 5–10 hrs (€/person)</label>
       <input type="number" id="rate-sub-low" value="19.25" step="0.01" min="0" />
     </div>
     <div class="field">
-      <label>Subsistence ≥10 hrs, lunch provided (€/person)</label>
+      <label>Sub. ≥10 hrs, lunch provided (€/person)</label>
       <input type="number" id="rate-sub-mid" value="26.92" step="0.01" min="0" />
     </div>
     <div class="field">
-      <label>Subsistence ≥10 hrs, no lunch (€/person)</label>
+      <label>Sub. ≥10 hrs, no lunch (€/person)</label>
       <input type="number" id="rate-sub-high" value="46.17" step="0.01" min="0" />
     </div>
   </div>
-  <p class="note" style="margin-bottom:10px;">Subsistence reference:</p>
-  <table class="rates-table">
-    <thead><tr><th>Total time</th><th>Lunch provided</th><th>Rate per person</th></tr></thead>
-    <tbody>
-      <tr><td>Under 5 hours</td><td>Either</td><td>No subsistence</td></tr>
-      <tr><td>5 to under 10 hours</td><td>Either</td><td>€19.25</td></tr>
-      <tr><td>10 hours or more</td><td>Yes</td><td>€26.92</td></tr>
-      <tr><td>10 hours or more</td><td>No</td><td>€46.17</td></tr>
-    </tbody>
-  </table>
+  <p class="note">Total time = travel both ways + activity + lunch. Under 5 hrs: no subsistence.</p>
 </div>
 
-<!-- STEP 4: OFFICES & CALCULATE -->
+<!-- STEP 4 -->
 <div class="card">
   <div class="step-header">
     <div class="step-badge">4</div>
     <div>
       <div class="step-title">Calculate T&amp;S</div>
-      <div class="step-sub">Adjust staff numbers if needed, then calculate
+      <div class="step-sub">Adjust staff numbers if needed, then click Calculate</div>
     </div>
   </div>
-  <div class="office-header">
-    <span>Office</span><span>Eircode</span><span>Staff</span><span>Distance</span><span>Travel time</span>
-  </div>
-  <div id="office-grid"></div>
+  <table class="office-table">
+    <thead>
+      <tr>
+        <th>Office</th>
+        <th>Eircode</th>
+        <th>Staff</th>
+        <th>Distance</th>
+        <th>Travel time</th>
+      </tr>
+    </thead>
+    <tbody id="office-tbody"></tbody>
+  </table>
   <button class="calc-btn" id="calc-btn" onclick="calculate()">Calculate T&amp;S</button>
   <div id="calc-error" class="calc-err"></div>
   <div class="warn">&#9888; T&amp;S costs come from a separate budget to the &euro;5,000 wellness fund. All events requiring travel must be approved by the Regional Manager and Corporate Services Manager before confirmation.</div>
@@ -194,11 +199,11 @@ tr:last-child td { border-bottom: none; }
   </div>
   <div class="card">
     <p class="section-title">Breakdown by office</p>
-    <table>
+    <table class="res-table">
       <thead>
         <tr>
           <th>Office</th><th>Staff</th><th>Distance</th><th>Travel time</th>
-          <th>Total time</th><th>Sub. rate</th><th>Mileage</th><th>Subsistence</th><th>Office total</th>
+          <th>Total time</th><th>Sub. rate</th><th>Mileage</th><th>Subsistence</th><th>Total</th>
         </tr>
       </thead>
       <tbody id="results-tbody"></tbody>
@@ -228,39 +233,42 @@ function fmt(mins) {
   return h > 0 ? h + 'h ' + m + 'm' : m + 'm';
 }
 
-function getSubsidence(totalHrs, lunchOn) {
+function getSub(totalHrs, lunchOn) {
   const rLow  = parseFloat(document.getElementById('rate-sub-low').value)  || 19.25;
   const rMid  = parseFloat(document.getElementById('rate-sub-mid').value)  || 26.92;
   const rHigh = parseFloat(document.getElementById('rate-sub-high').value) || 46.17;
-  if (totalHrs < 5)  return { rate: 0,     label: 'No subsistence', cls: 'b-none' };
-  if (totalHrs < 10) return { rate: rLow,  label: '5–10 hrs — €'+rLow.toFixed(2), cls: 'b-low' };
-  if (lunchOn)       return { rate: rMid,  label: '≥10 hrs + lunch — €'+rMid.toFixed(2), cls: 'b-mid' };
-  return               { rate: rHigh, label: '≥10 hrs, no lunch — €'+rHigh.toFixed(2), cls: 'b-high' };
+  if (totalHrs < 5)  return { rate: 0,     label: 'No subsistence',                        cls: 'b-none' };
+  if (totalHrs < 10) return { rate: rLow,  label: '5\u201310 hrs \u2014 \u20ac'+rLow.toFixed(2),  cls: 'b-low'  };
+  if (lunchOn)       return { rate: rMid,  label: '\u226510 hrs + lunch \u2014 \u20ac'+rMid.toFixed(2), cls: 'b-mid'  };
+  return               { rate: rHigh, label: '\u226510 hrs, no lunch \u2014 \u20ac'+rHigh.toFixed(2), cls: 'b-high' };
 }
 
-function renderGrid() {
-  document.getElementById('office-grid').innerHTML = officeData.map((o, i) => `
-    <div class="office-row">
-      <div class="office-name">${o.name}</div>
-      <div style="font-size:12px;color:#888;">${o.eircode}</div>
-      <div><input type="number" min="0" value="${o.staff}" style="width:58px;"
-        onchange="officeData[${i}].staff=parseInt(this.value)||0;if(venueCoords)renderResults();" /></div>
-      <div id="km-${i}" style="font-size:13px;">${o.km !== null ? o.km.toFixed(1)+' km' : '<span class="muted">\u2014</span>'}</div>
-      <div id="tm-${i}" style="font-size:13px;">${o.mins !== null ? fmt(o.mins) : '<span class="muted">\u2014</span>'}</div>
-    </div>`).join('');
+function renderOffices() {
+  document.getElementById('office-tbody').innerHTML = officeData.map((o, i) => `
+    <tr>
+      <td class="oname">${o.name}</td>
+      <td class="ocode">${o.eircode}</td>
+      <td><input type="number" min="0" value="${o.staff}"
+        onchange="officeData[${i}].staff=parseInt(this.value)||0;if(venueCoords)renderResults();" /></td>
+      <td id="km-${i}">${o.km !== null ? o.km.toFixed(1)+' km' : '<span class="muted">\u2014</span>'}</td>
+      <td id="tm-${i}">${o.mins !== null ? fmt(o.mins) : '<span class="muted">\u2014</span>'}</td>
+    </tr>`).join('');
 }
 
 async function lookupEircode() {
   const raw = document.getElementById('venue-eircode').value.trim();
-  if (!raw) return;
+  if (!raw) { 
+    document.getElementById('lookup-status').className = 'status err';
+    document.getElementById('lookup-status').textContent = 'Please enter an Eircode in Step 1 first.';
+    return; 
+  }
   const statusEl = document.getElementById('lookup-status');
   const btn = document.getElementById('lookup-btn');
   statusEl.className = 'status loading';
   statusEl.textContent = 'Looking up Eircode\u2026';
   btn.disabled = true;
   try {
-    const url = APPS_SCRIPT_URL + '?eircode=' + encodeURIComponent(raw);
-    const r = await fetch(url);
+    const r = await fetch(APPS_SCRIPT_URL + '?eircode=' + encodeURIComponent(raw));
     const data = await r.json();
     if (!data.ok) throw new Error(data.error || 'Lookup failed');
     venueCoords = { lat: data.lat, lon: data.lon };
@@ -272,14 +280,13 @@ async function lookupEircode() {
   } catch(e) {
     venueCoords = null;
     statusEl.className = 'status err';
-    statusEl.textContent = 'Error: ' + e.message + '. Check the Eircode and try again.';
+    statusEl.textContent = 'Error: ' + e.message;
   }
   btn.disabled = false;
 }
 
 async function getRoute(from, to) {
-  const url = `https://router.project-osrm.org/route/v1/driving/${from.lon},${from.lat};${to.lon},${to.lat}?overview=false`;
-  const r = await fetch(url);
+  const r = await fetch(`https://router.project-osrm.org/route/v1/driving/${from.lon},${from.lat};${to.lon},${to.lat}?overview=false`);
   const data = await r.json();
   if (data.code !== 'Ok') throw new Error('Routing failed');
   return { km: data.routes[0].distance / 1000, mins: data.routes[0].duration / 60 };
@@ -288,16 +295,15 @@ async function getRoute(from, to) {
 async function calculate() {
   const errEl = document.getElementById('calc-error');
   errEl.textContent = '';
-  if (!venueCoords) { errEl.textContent = 'Please look up the venue Eircode first (Step 1).'; return; }
+  if (!venueCoords) { errEl.textContent = 'Please complete Steps 1 and 2 first.'; return; }
   const btn = document.getElementById('calc-btn');
   btn.textContent = 'Calculating\u2026'; btn.disabled = true;
   for (let i = 0; i < officeData.length; i++) {
     document.getElementById('km-' + i).innerHTML = '<span class="muted">\u2026</span>';
     document.getElementById('tm-' + i).innerHTML = '<span class="muted">\u2026</span>';
     try {
-      const route = await getRoute({ lat: officeData[i].lat, lon: officeData[i].lon }, venueCoords);
-      officeData[i].km = route.km;
-      officeData[i].mins = route.mins;
+      const route = await getRoute(officeData[i], venueCoords);
+      officeData[i].km = route.km; officeData[i].mins = route.mins;
       document.getElementById('km-' + i).textContent = route.km.toFixed(1) + ' km';
       document.getElementById('tm-' + i).textContent = fmt(route.mins);
     } catch(e) {
@@ -307,7 +313,7 @@ async function calculate() {
     }
   }
   renderResults();
-  btn.textContent = 'Calculate T&S'; btn.disabled = false;
+  btn.textContent = 'Calculate T\&S'; btn.disabled = false;
 }
 
 function renderResults() {
@@ -315,22 +321,18 @@ function renderResults() {
   const aHrs   = parseFloat(document.getElementById('activity-hrs').value) || 0;
   const lHrs   = parseFloat(document.getElementById('lunch-hrs').value) || 0;
   const lunchOn = document.getElementById('lunch-included').value === 'yes';
-
   let totMileage = 0, totSub = 0, totStaff = 0;
   const tbody = document.getElementById('results-tbody');
   tbody.innerHTML = '';
   let hasResults = false;
-
   officeData.forEach(o => {
     if (o.km === null) return;
     hasResults = true;
-    const travelRtn = (o.mins / 60) * 2;
-    const totalHrs  = travelRtn + aHrs + lHrs;
-    const sub       = getSubsidence(totalHrs, lunchOn);
-    const mileage   = o.km * 2 * rKm * o.staff;
-    const subTotal  = sub.rate * o.staff;
+    const totalHrs = (o.mins / 60) * 2 + aHrs + lHrs;
+    const sub      = getSub(totalHrs, lunchOn);
+    const mileage  = o.km * 2 * rKm * o.staff;
+    const subTotal = sub.rate * o.staff;
     totMileage += mileage; totSub += subTotal; totStaff += o.staff;
-
     tbody.innerHTML += `<tr>
       <td><strong>${o.name}</strong></td>
       <td>${o.staff}</td>
@@ -340,36 +342,31 @@ function renderResults() {
       <td><span class="badge ${sub.cls}">${sub.label}</span></td>
       <td>&euro;${mileage.toFixed(2)}</td>
       <td>&euro;${subTotal.toFixed(2)}</td>
-      <td><strong>&euro;${(mileage + subTotal).toFixed(2)}</strong></td>
+      <td><strong>&euro;${(mileage+subTotal).toFixed(2)}</strong></td>
     </tr>`;
   });
-
   if (!hasResults) return;
   const grand = totMileage + totSub;
-
   tbody.innerHTML += `<tr class="total-row">
-    <td colspan="6"><strong>Total (${totStaff} staff travelling)</strong></td>
+    <td colspan="6"><strong>Total (${totStaff} staff)</strong></td>
     <td><strong>&euro;${totMileage.toFixed(2)}</strong></td>
     <td><strong>&euro;${totSub.toFixed(2)}</strong></td>
     <td><strong>&euro;${grand.toFixed(2)}</strong></td>
   </tr>`;
-
   document.getElementById('summary-metrics').innerHTML = `
     <div class="metric"><div class="metric-label">Total T&S estimate</div><div class="metric-value hi">&euro;${grand.toFixed(2)}</div></div>
-    <div class="metric"><div class="metric-label">Mileage total</div><div class="metric-value">&euro;${totMileage.toFixed(2)}</div></div>
-    <div class="metric"><div class="metric-label">Subsistence total</div><div class="metric-value">&euro;${totSub.toFixed(2)}</div></div>
+    <div class="metric"><div class="metric-label">Mileage</div><div class="metric-value">&euro;${totMileage.toFixed(2)}</div></div>
+    <div class="metric"><div class="metric-label">Subsistence</div><div class="metric-value">&euro;${totSub.toFixed(2)}</div></div>
     <div class="metric"><div class="metric-label">Staff travelling</div><div class="metric-value">${totStaff}</div></div>`;
-
   const vName = document.getElementById('venue-name').value || 'venue';
   const vAddr = document.getElementById('venue-address').value;
   document.getElementById('results-note').textContent =
-    `Mileage at \u20ac${rKm.toFixed(2)}/km return. Driving distances from OSRM. Venue: ${vName}${vAddr ? ' \u2014 ' + vAddr : ''}. This is an estimate only. T&S requires RM and CSM approval before any event is confirmed.`;
-
+    `Mileage at \u20ac${rKm.toFixed(2)}/km return. Distances from OSRM. Venue: ${vName}${vAddr?' \u2014 '+vAddr:''}. Estimate only \u2014 T&S requires RM and CSM approval.`;
   document.getElementById('results-section').style.display = 'block';
   document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
 }
 
-renderGrid();
+renderOffices();
 </script>
 </body>
 </html>
