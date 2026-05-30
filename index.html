@@ -10,6 +10,10 @@ body { font-family: Arial, sans-serif; font-size: 14px; color: #222; background:
 h1 { color: #303898; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
 .lime-bar { height: 4px; background: #D0E038; border-radius: 2px; margin: 8px 0 20px; width: 60px; }
 .card { background: #fff; border: 1px solid #dde; border-radius: 10px; padding: 20px; margin-bottom: 16px; }
+.step-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.step-badge { background: #303898; color: #fff; font-size: 12px; font-weight: 700; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.step-title { font-size: 13px; font-weight: 700; color: #303898; text-transform: uppercase; letter-spacing: 0.05em; }
+.step-sub { font-size: 11px; color: #888; margin-top: 1px; }
 .section-title { font-size: 11px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 14px; }
 .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
 .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px; }
@@ -20,23 +24,22 @@ h1 { color: #303898; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
 .field input:focus, .field select:focus { outline: 2px solid #303898; border-color: #303898; }
 .field input.populated { background: #f0f4ff; border-color: #303898; color: #303898; }
 .eircode-row { display: flex; gap: 10px; align-items: flex-end; }
-.eircode-row input { flex: 1; padding: 8px 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; font-family: Arial; text-transform: uppercase; }
+.eircode-row input { flex: 1; padding: 8px 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px; font-family: Arial; text-transform: uppercase; letter-spacing: 0.08em; }
 .eircode-row input:focus { outline: 2px solid #303898; border-color: #303898; }
-.lookup-btn { padding: 8px 16px; background: #303898; color: #fff; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.lookup-btn { padding: 8px 18px; background: #303898; color: #fff; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; }
 .lookup-btn:hover { background: #252d7a; }
 .lookup-btn:disabled { background: #aaa; cursor: not-allowed; }
 .status { font-size: 12px; margin-top: 6px; min-height: 18px; }
 .ok { color: #2a5c0e; }
 .err { color: #c0392b; }
 .loading { color: #888; font-style: italic; }
-.calc-btn { padding: 11px 24px; background: #303898; color: #fff; border: none; border-radius: 7px; font-size: 14px; font-weight: 600; cursor: pointer; width: 100%; margin-top: 10px; }
+.calc-btn { padding: 13px 24px; background: #303898; color: #fff; border: none; border-radius: 7px; font-size: 15px; font-weight: 700; cursor: pointer; width: 100%; margin-top: 4px; letter-spacing: 0.01em; }
 .calc-btn:hover { background: #252d7a; }
 .calc-btn:disabled { background: #aaa; cursor: not-allowed; }
-.office-header { display: grid; grid-template-columns: 2fr 1fr 0.7fr 1fr 1fr; gap: 8px; padding: 0 10px 6px; }
+.office-header { display: grid; grid-template-columns: 2.2fr 1fr 0.7fr 1fr 1fr; gap: 8px; padding: 0 10px 6px; }
 .office-header span { font-size: 11px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
-.office-row { display: grid; grid-template-columns: 2fr 1fr 0.7fr 1fr 1fr; gap: 8px; align-items: center; padding: 9px 10px; background: #f7f8fc; border-radius: 7px; margin-bottom: 6px; }
-.office-name { font-size: 13px; font-weight: 600; color: #303898; }
-.office-eircode { font-size: 11px; color: #888; }
+.office-row { display: grid; grid-template-columns: 2.2fr 1fr 0.7fr 1fr 1fr; gap: 8px; align-items: center; padding: 9px 10px; background: #f7f8fc; border-radius: 7px; margin-bottom: 6px; }
+.office-name { font-size: 13px; font-weight: 700; color: #303898; }
 .office-row input[type=number] { padding: 6px 8px; border: 1px solid #ccc; border-radius: 5px; font-size: 13px; width: 58px; }
 .muted { color: #bbb; }
 .calc-err { color: #c0392b; font-size: 12px; margin-top: 8px; }
@@ -52,10 +55,16 @@ td { padding: 9px 10px; border-bottom: 1px solid #eee; vertical-align: middle; }
 tr:last-child td { border-bottom: none; }
 .total-row td { background: #f7f8fc; font-weight: 700; }
 .badge { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 20px; margin-left: 4px; }
-.b-over { background: #fef3e2; color: #7a4500; }
-.b-under { background: #e8f5e2; color: #2a5c0e; }
+.b-high  { background: #fde8e8; color: #7a0000; }
+.b-mid   { background: #fef3e2; color: #7a4500; }
+.b-low   { background: #e8f5e2; color: #2a5c0e; }
+.b-none  { background: #eee; color: #888; }
 .note { font-size: 11px; color: #888; margin-top: 10px; line-height: 1.6; }
 .warn { background: #fff8e1; border-left: 4px solid #f0a500; border-radius: 0 6px 6px 0; padding: 10px 14px; font-size: 12px; color: #7a4500; margin-top: 12px; line-height: 1.6; }
+.rates-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 4px; }
+.rates-table th { font-size: 11px; color: #888; padding: 5px 8px; border-bottom: 1px solid #eee; font-weight: 600; text-align: left; }
+.rates-table td { padding: 6px 8px; border-bottom: 1px solid #f4f4f4; }
+.rates-table tr:last-child td { border-bottom: none; }
 </style>
 </head>
 <body>
@@ -63,9 +72,15 @@ tr:last-child td { border-bottom: none; }
 <h1>South Connacht MABS</h1>
 <div class="lime-bar"></div>
 
-<!-- VENUE -->
+<!-- STEP 1: VENUE -->
 <div class="card">
-  <p class="section-title">Venue — enter Eircode to look up address</p>
+  <div class="step-header">
+    <div class="step-badge">1</div>
+    <div>
+      <div class="step-title">Enter venue Eircode</div>
+      <div class="step-sub">Type the Eircode of the event venue — with or without a space</div>
+    </div>
+  </div>
   <div class="field" style="margin-bottom:12px;">
     <label>Venue Eircode</label>
     <div class="eircode-row">
@@ -88,9 +103,24 @@ tr:last-child td { border-bottom: none; }
   </div>
 </div>
 
-<!-- TIMING -->
+<!-- STEP 2: EVENT TIMING -->
 <div class="card">
-  <p class="section-title">Event timing</p>
+  <div class="step-header">
+    <div class="step-badge">2</div>
+    <div>
+      <div class="step-title">Look up address</div>
+      <div class="step-sub">Click ‘Look up address’ to confirm the venue location before calculating</div>
+    </div>
+  </div>
+
+<div class="card">
+  <div class="step-header">
+    <div class="step-badge">3</div>
+    <div>
+      <div class="step-title">Event timing &amp; rates</div>
+      <div class="step-sub">Set activity and lunch duration — adjust rates if needed</div>
+    </div>
+  </div>
   <div class="row4">
     <div class="field">
       <label>Activity duration (hrs)</label>
@@ -101,43 +131,57 @@ tr:last-child td { border-bottom: none; }
       <input type="number" id="lunch-hrs" value="1" min="0" step="0.5" />
     </div>
     <div class="field">
-      <label>Lunch included?</label>
+      <label>Lunch provided?</label>
       <select id="lunch-included">
         <option value="yes">Yes</option>
         <option value="no">No</option>
       </select>
     </div>
-  </div>
-  <p class="note">Total time = travel to venue + activity + lunch + travel home. Under 5 hrs: rate A. 5 hrs or over: rate B. Subsistence only applies when lunch is included.</p>
-</div>
-
-<!-- RATES -->
-<div class="card">
-  <p class="section-title">Rates (editable)</p>
-  <div class="row3">
     <div class="field">
-      <label>Mileage (€ per km)</label>
+      <label>Mileage rate (€/km)</label>
       <input type="number" id="rate-km" value="0.50" step="0.01" min="0" />
     </div>
+  </div>
+  <div class="row3">
     <div class="field">
-      <label>Subsistence under 5 hrs (€/person)</label>
+      <label>Subsistence 5–10 hrs (€/person)</label>
       <input type="number" id="rate-sub-low" value="19.25" step="0.01" min="0" />
     </div>
     <div class="field">
-      <label>Subsistence 5 hrs or over (€/person)</label>
-      <input type="number" id="rate-sub-high" value="26.92" step="0.01" min="0" />
+      <label>Subsistence ≥10 hrs, lunch provided (€/person)</label>
+      <input type="number" id="rate-sub-mid" value="26.92" step="0.01" min="0" />
+    </div>
+    <div class="field">
+      <label>Subsistence ≥10 hrs, no lunch (€/person)</label>
+      <input type="number" id="rate-sub-high" value="46.17" step="0.01" min="0" />
     </div>
   </div>
+  <p class="note" style="margin-bottom:10px;">Subsistence reference:</p>
+  <table class="rates-table">
+    <thead><tr><th>Total time</th><th>Lunch provided</th><th>Rate per person</th></tr></thead>
+    <tbody>
+      <tr><td>Under 5 hours</td><td>Either</td><td>No subsistence</td></tr>
+      <tr><td>5 to under 10 hours</td><td>Either</td><td>€19.25</td></tr>
+      <tr><td>10 hours or more</td><td>Yes</td><td>€26.92</td></tr>
+      <tr><td>10 hours or more</td><td>No</td><td>€46.17</td></tr>
+    </tbody>
+  </table>
 </div>
 
-<!-- OFFICES -->
+<!-- STEP 4: OFFICES & CALCULATE -->
 <div class="card">
-  <p class="section-title">Offices</p>
+  <div class="step-header">
+    <div class="step-badge">4</div>
+    <div>
+      <div class="step-title">Calculate T&amp;S</div>
+      <div class="step-sub">Adjust staff numbers if needed, then calculate
+    </div>
+  </div>
   <div class="office-header">
     <span>Office</span><span>Eircode</span><span>Staff</span><span>Distance</span><span>Travel time</span>
   </div>
   <div id="office-grid"></div>
-  <button class="calc-btn" id="calc-btn" onclick="calculate()">Calculate distances via OSRM</button>
+  <button class="calc-btn" id="calc-btn" onclick="calculate()">Calculate T&amp;S</button>
   <div id="calc-error" class="calc-err"></div>
   <div class="warn">&#9888; T&amp;S costs come from a separate budget to the &euro;5,000 wellness fund. All events requiring travel must be approved by the Regional Manager and Corporate Services Manager before confirmation.</div>
 </div>
@@ -168,12 +212,12 @@ const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby-_apFVzG8FNc-
 
 const OFFICES = [
   { name: "Galway CIB Office", eircode: "H91 EY10", staff: 1, lat: 53.2743, lon: -9.0514 },
-  { name: "Ballina",           eircode: "F26 WD35",  staff: 5, lat: 54.1143, lon: -9.1551 },
-  { name: "MABS Castlebar",    eircode: "F23 NF82",  staff: 7, lat: 53.8608, lon: -9.2988 },
+  { name: "Ballina MABS",      eircode: "F26 WD35",  staff: 5, lat: 54.1143, lon: -9.1551 },
+  { name: "Castlebar MABS",    eircode: "F23 NF82",  staff: 7, lat: 53.8608, lon: -9.2988 },
   { name: "Loughrea MABS",     eircode: "H62 H721",  staff: 2, lat: 53.1978, lon: -8.5679 },
   { name: "Tuam MABS",         eircode: "H54 Y677",  staff: 5, lat: 53.5143, lon: -8.8561 },
-  { name: "Roscommon",         eircode: "F42 TD98",  staff: 3, lat: 53.6323, lon: -8.1897 },
-  { name: "Galway City",       eircode: "H91 D296",  staff: 9, lat: 53.2707, lon: -9.0568 },
+  { name: "Roscommon MABS",    eircode: "F42 TD98",  staff: 3, lat: 53.6323, lon: -8.1897 },
+  { name: "Galway City MABS",  eircode: "H91 D296",  staff: 9, lat: 53.2707, lon: -9.0568 },
 ];
 
 let officeData = OFFICES.map(o => ({ ...o, km: null, mins: null }));
@@ -184,11 +228,21 @@ function fmt(mins) {
   return h > 0 ? h + 'h ' + m + 'm' : m + 'm';
 }
 
+function getSubsidence(totalHrs, lunchOn) {
+  const rLow  = parseFloat(document.getElementById('rate-sub-low').value)  || 19.25;
+  const rMid  = parseFloat(document.getElementById('rate-sub-mid').value)  || 26.92;
+  const rHigh = parseFloat(document.getElementById('rate-sub-high').value) || 46.17;
+  if (totalHrs < 5)  return { rate: 0,     label: 'No subsistence', cls: 'b-none' };
+  if (totalHrs < 10) return { rate: rLow,  label: '5–10 hrs — €'+rLow.toFixed(2), cls: 'b-low' };
+  if (lunchOn)       return { rate: rMid,  label: '≥10 hrs + lunch — €'+rMid.toFixed(2), cls: 'b-mid' };
+  return               { rate: rHigh, label: '≥10 hrs, no lunch — €'+rHigh.toFixed(2), cls: 'b-high' };
+}
+
 function renderGrid() {
   document.getElementById('office-grid').innerHTML = officeData.map((o, i) => `
     <div class="office-row">
-      <div><div class="office-name">${o.name}</div><div class="office-eircode">${o.eircode}</div></div>
-      <div style="font-size:12px;color:#555;">${o.eircode}</div>
+      <div class="office-name">${o.name}</div>
+      <div style="font-size:12px;color:#888;">${o.eircode}</div>
       <div><input type="number" min="0" value="${o.staff}" style="width:58px;"
         onchange="officeData[${i}].staff=parseInt(this.value)||0;if(venueCoords)renderResults();" /></div>
       <div id="km-${i}" style="font-size:13px;">${o.km !== null ? o.km.toFixed(1)+' km' : '<span class="muted">\u2014</span>'}</div>
@@ -199,28 +253,22 @@ function renderGrid() {
 async function lookupEircode() {
   const raw = document.getElementById('venue-eircode').value.trim();
   if (!raw) return;
-
   const statusEl = document.getElementById('lookup-status');
   const btn = document.getElementById('lookup-btn');
   statusEl.className = 'status loading';
   statusEl.textContent = 'Looking up Eircode\u2026';
   btn.disabled = true;
-
   try {
     const url = APPS_SCRIPT_URL + '?eircode=' + encodeURIComponent(raw);
     const r = await fetch(url);
     const data = await r.json();
-
     if (!data.ok) throw new Error(data.error || 'Lookup failed');
-
     venueCoords = { lat: data.lat, lon: data.lon };
-
     const addrEl = document.getElementById('venue-address');
     addrEl.value = data.address;
     addrEl.className = 'populated';
-
     statusEl.className = 'status ok';
-    statusEl.textContent = '\u2713 Found: ' + data.address + ' (' + data.lat.toFixed(5) + ', ' + data.lon.toFixed(5) + ')';
+    statusEl.textContent = '\u2713 Found: ' + data.address;
   } catch(e) {
     venueCoords = null;
     statusEl.className = 'status err';
@@ -240,13 +288,9 @@ async function getRoute(from, to) {
 async function calculate() {
   const errEl = document.getElementById('calc-error');
   errEl.textContent = '';
-  if (!venueCoords) {
-    errEl.textContent = 'Please look up the venue Eircode first.';
-    return;
-  }
+  if (!venueCoords) { errEl.textContent = 'Please look up the venue Eircode first (Step 1).'; return; }
   const btn = document.getElementById('calc-btn');
   btn.textContent = 'Calculating\u2026'; btn.disabled = true;
-
   for (let i = 0; i < officeData.length; i++) {
     document.getElementById('km-' + i).innerHTML = '<span class="muted">\u2026</span>';
     document.getElementById('tm-' + i).innerHTML = '<span class="muted">\u2026</span>';
@@ -263,15 +307,13 @@ async function calculate() {
     }
   }
   renderResults();
-  btn.textContent = 'Recalculate distances via OSRM'; btn.disabled = false;
+  btn.textContent = 'Calculate T&S'; btn.disabled = false;
 }
 
 function renderResults() {
-  const rKm   = parseFloat(document.getElementById('rate-km').value) || 0.50;
-  const rLow  = parseFloat(document.getElementById('rate-sub-low').value) || 19.25;
-  const rHigh = parseFloat(document.getElementById('rate-sub-high').value) || 26.92;
-  const aHrs  = parseFloat(document.getElementById('activity-hrs').value) || 0;
-  const lHrs  = parseFloat(document.getElementById('lunch-hrs').value) || 0;
+  const rKm    = parseFloat(document.getElementById('rate-km').value) || 0.50;
+  const aHrs   = parseFloat(document.getElementById('activity-hrs').value) || 0;
+  const lHrs   = parseFloat(document.getElementById('lunch-hrs').value) || 0;
   const lunchOn = document.getElementById('lunch-included').value === 'yes';
 
   let totMileage = 0, totSub = 0, totStaff = 0;
@@ -283,26 +325,22 @@ function renderResults() {
     if (o.km === null) return;
     hasResults = true;
     const travelRtn = (o.mins / 60) * 2;
-    const totalHrs = travelRtn + aHrs + lHrs;
-    const subRate = lunchOn ? (totalHrs >= 5 ? rHigh : rLow) : 0;
-    const mileage = o.km * 2 * rKm * o.staff;
-    const sub = subRate * o.staff;
-    totMileage += mileage; totSub += sub; totStaff += o.staff;
-
-    const badge = lunchOn
-      ? (totalHrs >= 5 ? '<span class="badge b-over">&#8805;5 hrs</span>' : '<span class="badge b-under">&lt;5 hrs</span>')
-      : '<span class="badge" style="background:#eee;color:#888">no lunch</span>';
+    const totalHrs  = travelRtn + aHrs + lHrs;
+    const sub       = getSubsidence(totalHrs, lunchOn);
+    const mileage   = o.km * 2 * rKm * o.staff;
+    const subTotal  = sub.rate * o.staff;
+    totMileage += mileage; totSub += subTotal; totStaff += o.staff;
 
     tbody.innerHTML += `<tr>
       <td><strong>${o.name}</strong></td>
       <td>${o.staff}</td>
       <td>${o.km.toFixed(1)} km each way</td>
       <td>${fmt(o.mins)} each way</td>
-      <td>${totalHrs.toFixed(1)} hrs ${badge}</td>
-      <td>${lunchOn ? '&euro;' + subRate.toFixed(2) + '/person' : '&mdash;'}</td>
+      <td>${totalHrs.toFixed(1)} hrs</td>
+      <td><span class="badge ${sub.cls}">${sub.label}</span></td>
       <td>&euro;${mileage.toFixed(2)}</td>
-      <td>&euro;${sub.toFixed(2)}</td>
-      <td><strong>&euro;${(mileage + sub).toFixed(2)}</strong></td>
+      <td>&euro;${subTotal.toFixed(2)}</td>
+      <td><strong>&euro;${(mileage + subTotal).toFixed(2)}</strong></td>
     </tr>`;
   });
 
@@ -328,6 +366,7 @@ function renderResults() {
     `Mileage at \u20ac${rKm.toFixed(2)}/km return. Driving distances from OSRM. Venue: ${vName}${vAddr ? ' \u2014 ' + vAddr : ''}. This is an estimate only. T&S requires RM and CSM approval before any event is confirmed.`;
 
   document.getElementById('results-section').style.display = 'block';
+  document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
 }
 
 renderGrid();
